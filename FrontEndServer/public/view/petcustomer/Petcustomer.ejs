@@ -8,6 +8,125 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
+
+    <style>
+      /* style.css */
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background:#FFE5B4 ;
+  z-index: -1;
+}
+
+h1 {
+  color: #000000;
+  margin-top: 50px;
+}
+
+table {
+  width: 100%;
+  max-width: 1500px; 
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background-color: #4caf50;
+  color: #000000;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+a {
+  color: #000000;
+  text-decoration: none;
+  padding: 8px;
+  margin: 0 5px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+a:hover {
+  background-color: #F4A460;
+  color: #ffffff;
+}
+/* style.css */
+
+table {
+  width: 100%;
+  table-layout: fixed; /* เพิ่มบรรทัดนี้เพื่อให้ตารางใช้ความกว้างทั้งหมด */
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 12px;
+  border: 1px solid #dddddd;
+  text-align: left;
+  
+}
+
+th {
+  background-color: #F4A460;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+nav {
+    background-color: #F4A460;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  nav a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  nav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+
+  .active {
+    background-color: #F4A460;
+    color: white;
+  }
+
+
+
+
+  </style>
+
 </head>
 <body>
   <nav>
@@ -16,6 +135,7 @@
     <a href="/orders/">Order</a>
     <a href="/orderdetails/">Order Details</a>
     <a href="/customers/">Customer</a>
+    <a href="/Petcustomers/">petcustomer</a>
   </nav>
   <div class="background">
     <div class="shape"></div>
@@ -26,20 +146,57 @@
     <tr>
       <th>ID</th>
       <th>cat_id</th>
-      <th>customer_id</th>
+      <th>FirstName</th>
+      <th>LastName</th>
+      <th>Email</th>
+      <th>Action</th>
     </tr>
-    <% for (var i = 0; i < petcustomers.length; i++) {%>
-    <tr>
-      <td><%= petcustomers[i].petcustomer_id %></td>
-      <td><%= petcustomers[i].cat_id %></td>
-      <td><%= petcustomers[i].customer_id %></td>
-      <td>
-        <a href="/cat/view/<%= cats[i].cat_id %>">Preview</a>
-        <a href="/cat/update/<%= cats[i].cat_id %>">Edit</a>
-        <a href="/delete/<%= cats[i].cat_id %>">Delete</a>
-      </td>
-    </tr>
-    <% } %>
+    <% for (let i=0; i < petcustomers.length; i++) { %>
+      <tr>
+          <td>
+              <%= petcustomers[i].petcustomer_id %>
+          </td>
+
+          <td>
+          <% 
+          let productsID = petcustomers[i].cat_id
+          let id = 1
+          for( let a=0; a < productsID.length; a++) {
+              for( let b=0; b < cats.length; b++) {
+                  if(productsID[a]  == cats[b].cat_id) {
+          %>
+                      <%= cats[b].name  %><br>
+          <%
+                      id++;
+                  }
+              }
+          }
+          %>
+          </td>
+
+          <% 
+          let FirstName 
+          let LastName
+          let Email
+          for(let j=0; j < customers.length; j++) { 
+              if(petcustomers[i].customer_id == customers[j].customer_id) {
+                  FirstName=customers[j].firstName
+                  LastName=customers[j].lastName
+                  Email=customers[j].email
+
+              }
+          } 
+          %>
+          <td><%= FirstName %></td>
+          <td><%= LastName %></td>
+          <td><%= Email %></td>
+          <td>
+            <a href="/petcustomers/detail/<%= petcustomers[i].petcustomer_id %>">Preview</a>
+            <a href="/cat/update/<%= petcustomers[i].petcustomer_id %>">Edit</a>
+            <a href="/delete/<%= petcustomers[i].petcustomer_id %>">Delete</a>
+          </td>
+      </tr>
+      <% } %>
   </table>
   <a href="/petcustomers/create">Create New Cat</a>
 </body>

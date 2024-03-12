@@ -124,11 +124,11 @@ const Petcustomer = sequelize.define('petcustomer', {
         primaryKey: true
     },
     cat_id: {
-        type: Sequelize.INTEGER ,
+        type: Sequelize.JSON ,
         allowNull: false
     },
     customer_id: {
-        type: Sequelize.INTEGER ,
+        type: Sequelize.STRING ,
         allowNull: false
     }
 });
@@ -428,7 +428,7 @@ app.put('/petcustomers/:id' , (req ,res) => {
 app.delete('/petcustomers/:id' ,(req ,res) => {
     Petcustomer.findByPk(req.params.id).then(petcustomer => {
         if(!petcustomer) {
-            res.status(404).send('OrderDetail not found');
+            res.status(404).send('Petcustomer not found');
         }else {
             petcustomer.destroy().then(() => {
                 res.send({});

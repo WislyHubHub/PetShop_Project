@@ -138,6 +138,7 @@ nav {
       <a href="/orders/">Order</a>
       <a href="/orderdetails/">Order Details</a>
       <a href="/customers/">Customer</a>
+      <a href="/Petcustomers/">petcustomer</a>
     </nav>
     <div class="background">
       <div class="shape"></div>
@@ -146,6 +147,7 @@ nav {
     <h1>Cats</h1>
     <table >
       <tr>
+        <th>Number ID</th>
         <th>Name</th>
         <th>Breed</th>
         <th>Age</th>
@@ -156,6 +158,7 @@ nav {
       </tr>
       <% for (var i = 0; i < cats.length; i++) {%>
       <tr>
+        <td><%= cats[i].cat_id %></td>
         <td><%= cats[i].name %></td>
         <td><%= cats[i].breed %></td>
         <td><%= cats[i].age %></td>
