@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cat</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      p {
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        background-color: #FFE5B4;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      form {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 300px;
+        padding: 20px;
+      }
+
+      label {
+        display: block;
+        margin-top: 20px;
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      input {
+        width: 100%;
+        padding: 8px;
+        margin-top: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
+      button {
+        background-color: #000000;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+
+      button:hover {
+        background-color: #000000;
+      }
+
+      a {
+        color: #000000;
+        text-decoration: none;
+        display: block;
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <div class="background">
+      <div class="shape"></div>
+      <div class="shape"></div>
+    </div>
+    <form action="/cats/<%= cat.id %>/edit" method="post">
+      <h1>Name <%= cat.name %></h1>
+      <label for="name">Name:</label>
+      <input type="text"id="name"name="name"value="<%= cat.name %>"required readonly/>
+
+      <label for="breed">Breed:</label>
+      <input type="text"id="breed"name="breed"value="<%= cat.breed %>"required readonly/>
+
+      <label for="age">Age:</label>
+      <input type="text"id="age"name="age" value="<%= cat.age %>" required readonly/>
+
+      <label for="color">Color:</label>
+      <input type="text"id="color"name="color"value="<%= cat.color %>"required readonly/>
+
+      <label for="price">Price:</label>
+      <input type="text"id="price" name="price" value="<%= cat.price %>" required readonly/>
+
+      <label for="availability">Availability:</label>
+      <input type="text"id="availability"name="availability"value="<%= cat.availability %>"required readonly/>
+
+      <a href="/cat/update/<%= cat.cat_id %>">Edit</a>
+      <a href="/cat/delete/<%= cat.cat_id %>">Delete</a>
+      <a href="/cats">Back to List</a>
+    </form>
+  </body>
+</html>

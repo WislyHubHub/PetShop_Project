@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignments</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav>
+    <a href="/main/">Product</a>
+    <a class="active" href="/cats">CatAll</a>
+    <a href="/orders/">Order</a>
+    <a href="/orderdetails/">Order Details</a>
+    <a href="/customers/">Customer</a>
+  </nav>
+  <div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+  <h1>Pet and Customer</h1>
+  <table >
+    <tr>
+      <th>ID</th>
+      <th>cat_id</th>
+      <th>customer_id</th>
+    </tr>
+    <% for (var i = 0; i < cats.length; i++) {%>
+    <tr>
+      <td><%= petcustomers[i].Petcustomer_id %></td>
+      <td><%= petcustomers[i].cat_id %></td>
+      <td><%= petcustomers[i].customer_id %></td>
+      <td>
+        <a href="/cat/view/<%= cats[i].cat_id %>">Preview</a>
+        <a href="/cat/update/<%= cats[i].cat_id %>">Edit</a>
+        <a href="/delete/<%= cats[i].cat_id %>">Delete</a>
+      </td>
+    </tr>
+    <% } %>
+  </table>
+  <a href="/petcustomers/create">Create New Cat</a>
+</body>
+</html>
