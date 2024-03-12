@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+        body {
+            background-color: #FFE5B4;
+        }
+    </style>
 </head>
 <body>
 
@@ -13,16 +28,16 @@
       </div>
       <h1>Add Cat</h1>
       <form method="post" action="/petcustomers/create">
-        <label for="catid">Cat_ID:</label>
-        <input type="text" id="catid" name="catid" />
+        <label for="cat_id">Cat_ID:</label>
+        <input type="text" id="cat_id" name="cat_id" />
         <br />
-        <label for="customerid">Customer_ID:</label>
-        <input type="text" id="customerid" name="customerid" />
+        <label for="customer_id">Customer_ID:</label>
+        <input type="text" id="customer_id" name="customer_id" />
         <br />
     
         <input type="submit" value="ADD" />
       </form>
-      <a href="/Petcustomer">Back to List</a>
+      <a href="/petcustomers">Back to List</a>
     
 </body>
 </html>

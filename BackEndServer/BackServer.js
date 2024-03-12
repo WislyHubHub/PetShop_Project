@@ -391,7 +391,7 @@ app.get('/petcustomers' ,(req ,res) => {
 app.get('/petcustomers/:id' ,(req,res) => {
     Petcustomer.findByPk(req.params.id).then(petcustomer => {
         if(!petcustomer) {
-            res.status(404).send('OrderDetail not found');
+            res.status(404).send('Petcustomers not found');
         }else {
             res.json(petcustomer);
         }
@@ -405,13 +405,14 @@ app.post('/petcustomers' ,(req ,res) => {
         res.send(petcustomer);
     }).catch(err => {
         res.status(500).send(err);
+        
     });
 });
 
 app.put('/petcustomers/:id' , (req ,res) => {
     Petcustomer.findByPk(req.params.id).then(petcustomer => {
         if(!petcustomer) {
-            res.status(404).send('OrderDetail not found');
+            res.status(404).send('Petcustomers not found');
         }else {
             petcustomer.update(req.body).then(() => {
                 res.send(petcustomer);

@@ -318,10 +318,10 @@ app.get("/petcustomers", async (req, res) => {
     }
 });
 
-app.get("/petcustomers/:id", async (req, res) => {
+app.get("/petcustomer/:id", async (req, res) => {
     try{
         const response = await axios.get(base_url + '/petcustomers/' + req.params.id);
-        res.render("Petcustomers/petcustomer", { petcustomers: response.data});
+        res.render("petcustomer/petcustomer", { petcustomers: response.data});
     }catch (err){
         console.error(err);
         res.status(500).send('Error');
@@ -329,14 +329,14 @@ app.get("/petcustomers/:id", async (req, res) => {
 });
 
 app.get("/petcustomers/create", (req, res) => {
-    res.render("petcustomers/create");
+    res.render("petcustomer/create");
 });
 
 app.post("/petcustomers/create", async (req, res) => {
     try{
-        const detailData = {cat_id: req.body.cat_id ,customer_id: req.body.customer_id};
-        await axios.post(base_url + '/petcustomer/', req.params.petcustomer_id ,detailData);
-        res.redirect("/petcustomers/");
+        const customer_All = {cat_id: req.body.cat_id ,customer_id: req.body.customer_id};
+        await axios.post(base_url + "/petcustomers", customer_All);
+        res.redirect("/petcustomers");
     }catch (err){
         console.error(err);
         res.status(500).send('Error');
@@ -347,7 +347,7 @@ app.get("/petcustomers/update/:id", async (req, res) => {
     try{
         const response = await axois.get(
         base_url + '/petcustomer/' + req.params.petcustomer_id);
-        res.render("Petcustomer/update", { orderDetail: response.data});
+        res.render("Petcustomer/update", { petcustomers: response.data});
     }catch (err){
         console.error(err);
         res.status(500).send('Error');

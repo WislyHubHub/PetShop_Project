@@ -130,6 +130,7 @@
     <h1>Customers</h1>
     <table>
       <tr>
+        <th>Number Customer</th>
         <th>Username</th>
         <th>Firstname</th>
         <th>Lastname</th>
@@ -139,6 +140,7 @@
       </tr>
       <% for (var i = 0; i < customers.length; i++) {%>
       <tr>
+        <td><%= customers[i].customer_id %></td>
         <td><%= customers[i].username %></td>
         <td><%= customers[i].firstName %></td>
         <td><%= customers[i].lastName %></td>
