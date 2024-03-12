@@ -230,77 +230,6 @@ app.get("/orders/delete/:id", async (req, res) => {
     }
 });
 
-
-//OrderDetails Table
-app.get("/orderdetails/", async (req, res) => {
-    try{
-        const response = await axios.get(base_url + '/orderDetails');
-        res.render("Orderdetails/orderdetails", {orderDetails: response.data});
-    }catch (err){
-        console.error(err);
-        res.status(500).send('Error')
-    }
-});
-
-app.get("/orderdetail/:id", async (req, res) => {
-    try{
-        const response = await axios.get(base_url + '/orderDetails/' + req.params.id);
-        res.render("OrderDetails/orderdetail", { orderDetail: response.data});
-    }catch (err){
-        console.error(err);
-        res.status(500).send('Error');
-    }
-});
-
-app.get("/orderdetails/create", (req, res) => {
-    res.render("OrderDetails/create");
-});
-
-app.post("/orderdetails/create", async (req, res) => {
-    try{
-        const detailData = {order_id: req.body.order_id, cat_id: req.body.cat_id,
-                    quantity: req.body.quantity, unitPrice: req.body.unitPrice};
-        await axios.post(base_url + '/orderdetails/', detailData);
-        res.redirect("/orderdetails/");
-    }catch (err){
-        console.error(err);
-        res.status(500).send('Error');
-    }
-});
-
-app.get("/orderdetails/update/:id", async (req, res) => {
-    try{
-    const response = await axois.get(
-        base_url + '/orderdetails/' + req.params.id);
-        res.render("OrderDetails/update", { orderDetail: response.data});
-    }catch (err){
-        console.error(err);
-        res.status(500).send('Error');
-    }
-});
-
-app.post("/orderdetails/update/:id", async (req, res) => {
-    try{
-        const detailData = {order_id: req.body.order_id, cat_id: req.body.cat_id,
-            quantity: req.body.quantity, unitPrice: req.body.unitPrice};
-        await axios.put(base_url + '/orderdetails/' + req.params.id, detailData);
-        res.redirect("/orderdetails/");
-    }catch (err){
-        console.error(err);
-        res.status(500).send('Error');
-    }
-});
-
-app.get("/orderdetails/delete/:id", async (req, res) => {
-    try{
-        await axios.delete(base_url + '/orderdetails/' + req.params.id);
-        res.redirect("/orderdetails/");
-    }catch (err){
-        console.error(err);
-        res.status(500).send('Error');
-    }
-});
-
 //Petcustomer Table
 app.get("/petcustomers", async (req, res) => {
     try{
@@ -321,7 +250,7 @@ app.get("/petcustomers", async (req, res) => {
 app.get("/petcustomer/:id", async (req, res) => {
     try{
         const response = await axios.get(base_url + '/petcustomers/' + req.params.id);
-        res.render("petcustomer/", { petcustomers: response.data});
+        res.render("petcustomers/detail", { petcustomers: response.data});
     }catch (err){
         console.error(err);
         res.status(500).send('Error');
@@ -346,8 +275,8 @@ app.post("/petcustomers/create", async (req, res) => {
 app.get("/petcustomers/update/:id", async (req, res) => {
     try{
         const response = await axois.get(
-        base_url + '/petcustomer/' + req.params.petcustomer_id);
-        res.render("Petcustomer/update", { petcustomers: response.data});
+        base_url + '/petcustomers/' + req.params.id);
+        res.render("petcustomer/update", { petcustomers: response.data});
     }catch (err){
         console.error(err);
         res.status(500).send('Error');
@@ -356,9 +285,9 @@ app.get("/petcustomers/update/:id", async (req, res) => {
 
 app.post("/petcustomers/update/:id", async (req, res) => {
     try{
-        const cusData = {cat_id: req.body.cat_id ,customer_id: req.body.customer_id};
-        await axios.put(base_url + '/petcustomer/' + req.params.petcustomer_id, cusData);
-        res.redirect("/petcustomer/");
+        const customer_All = {petcustomer_id: req.body.petcustomer_id ,cat_id: req.body.cat_id ,customer_id: req.body.customer_id};
+        await axios.put(base_url + '/petcustomers/' + req.params.id, customer_All);
+        res.redirect("/petcustomers");
     }catch (err){
         console.error(err);
         res.status(500).send('Error');
@@ -367,9 +296,19 @@ app.post("/petcustomers/update/:id", async (req, res) => {
 
 app.get("/petcustomers/delete/:id", async (req, res) => {
     try{
-        const petcusId = req.params.petcustomer_id;
-        await axios.delete(base_url + '/petcustomers/' + petcusId);
-        res.redirect("/petcustomers");
+        // const petcusId = req.params.petcustomer_id;
+        await axios.delete(base_url + '/petcustomers/' + req.params.id);
+        res.redirect("/petcustomers/");
+    }catch (err){
+        console.error(err);
+        res.status(500).send('Error');
+    }
+});
+
+app.get("/customers/delete/:id", async (req, res) => {
+    try{
+        await axios.delete(base_url + '/customers/' + req.params.id);
+        res.redirect("/customers/");
     }catch (err){
         console.error(err);
         res.status(500).send('Error');

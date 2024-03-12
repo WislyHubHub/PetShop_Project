@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Order</title>
+    <title>Update Order</title>
     <link rel="stylesheet" href="/css/style.css"/>
     <link
       rel="stylesheet"
@@ -19,20 +19,20 @@
         }
     </style>
 </head>
+
 <body>
-    <h1>Create Order</h1>
-    <form method="post" action="/orders/create">
-        <label for="customer_id">Customer Id:</label>
-        <input type="text" id="customer_id" name="customer_id">
+    <h1>Update Order</h1>
+    <form method="post" action="/petcustomers/update/<%= petcustomers.petcustomer_id %>">
+        <h2>Number ID : <%= petcustomers.petcustomer_id %></h2>
+        <label for="cat_id">Cat ID:</label>
+        <input type="text" id="cat_id" name="cat_id" value="<%= petcustomers.cat_id %>">
         <br>
-        <label for="order_date">Order Date:</label>
-        <input type="text" id="order_date" name="order_date">
+        <label for="customer_id">Customer ID:</label>
+        <input type="text" id="customer_id" name="customer_id" value="<%= petcustomers.customer_id %>">
         <br>
-        <label for="total_amount">Total Amount:</label>
-        <input type="text" id="total_amount" name="total_amount">
-        <br>
-        <input type="submit" value="create">
+        
+        <input type="submit" value="Update">
     </form>
-    <a href="/orders/">Back to List</a>
+    <a href="/petcustomers">Back to List</a>
 </body>
 </html>

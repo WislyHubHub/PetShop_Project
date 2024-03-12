@@ -9,6 +9,15 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
 
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
+    rel="stylesheet"
+  />
+
     <style>
       /* style.css */
 
@@ -133,9 +142,8 @@ nav {
     <a href="/main/">Product</a>
     <a class="active" href="/cats">CatAll</a>
     <a href="/orders/">Order</a>
-    <a href="/orderdetails/">Order Details</a>
     <a href="/customers/">Customer</a>
-    <a href="/Petcustomers/">petcustomer</a>
+    <a href="/Petcustomers/">OrderPet</a>
   </nav>
   <div class="background">
     <div class="shape"></div>
@@ -144,7 +152,7 @@ nav {
   <h1>Pet and Customer</h1>
   <table >
     <tr>
-      <th>ID</th>
+      <th>Number ID</th>
       <th>cat_id</th>
       <th>FirstName</th>
       <th>LastName</th>
@@ -165,9 +173,8 @@ nav {
               for( let b=0; b < cats.length; b++) {
                   if(productsID[a]  == cats[b].cat_id) {
           %>
-                      <%= cats[b].name  %><br>
+                      <%= cats[b].cat_id  %><br>
           <%
-                      id++;
                   }
               }
           }
@@ -191,9 +198,9 @@ nav {
           <td><%= LastName %></td>
           <td><%= Email %></td>
           <td>
-            <a href="/petcustomers/detail/<%= petcustomers[i].petcustomer_id %>">Preview</a>
-            <a href="/cat/update/<%= petcustomers[i].petcustomer_id %>">Edit</a>
-            <a href="/delete/<%= petcustomers[i].petcustomer_id %>">Delete</a>
+            <a href="/detail/<%= petcustomers[i].petcustomer_id %>">Preview</a>
+            <a href="/petcustomers/update/<%= petcustomers[i].petcustomer_id %>">Edit</a>
+            <a href="/petcustomers/delete/<%= petcustomers[i].petcustomer_id %>">Delete</a>
           </td>
       </tr>
       <% } %>
