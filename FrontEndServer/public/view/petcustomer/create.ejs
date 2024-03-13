@@ -52,7 +52,7 @@
       </div>
       <h1>Add Cat</h1>
       <form method="post" action="/petcustomers/create">
-        <label for="cat_id">Breed ID:</label>
+        <label for="cat_id">Cat Name:</label>
         <select id="cat_id" name="cat_id" class="custom-dropdown">
             <% for(var j=0; j < cats.length; j++) { 
                 %>
@@ -61,7 +61,7 @@
                 <% } %>
         </select>
         <br />
-        <label for="customer_id">Breed ID:</label>
+        <label for="customer_id">Csutomer Name:</label>
         <select id="customer_id" name="customer_id" class="custom-dropdown">
             <% for(var j=0; j < customers.length; j++) { 
                 %>
