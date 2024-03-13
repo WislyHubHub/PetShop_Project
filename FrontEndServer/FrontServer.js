@@ -18,9 +18,9 @@ app.get("/" , async(req ,res) => {
     res.render("PetProduct/login.ejs");
 });
 
-app.get("/main", async (req, res) => {
-    res.render("PetProduct/main.ejs");
-});
+// app.get("/main", async (req, res) => {
+//     res.render("PetProduct/main.ejs");
+// });
 
 app.get("/cats", async (req, res) => {
     try{
