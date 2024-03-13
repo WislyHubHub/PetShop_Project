@@ -30,8 +30,14 @@
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" />
       <br />
-      <label for="breed">Breed:</label>
-      <input type="text" id="breed" name="breed" />
+      <label for="breed_id">Breed ID:</label>
+        <select id="breed_id" name="breed_id" class="custom-dropdown">
+            <% for(var j=0; j < breeds.length; j++) { 
+                %>
+                <option value="<%= breeds[j].breed_id %>"><%= breeds[j].breedName %>
+                </option>
+                <% } %>
+        </select>
       <br />
       <label for="age">Age:</label>
       <input type="text" id="age" name="age" />

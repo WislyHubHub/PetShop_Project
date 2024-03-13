@@ -90,8 +90,20 @@
       <label for="name">Name:</label>
       <input type="text"id="name"name="name"value="<%= cat.name %>"required readonly/>
 
-      <label for="breed">Breed:</label>
-      <input type="text"id="breed"name="breed"value="<%= cat.breed %>"required readonly/>
+      <% 
+        let BreedName
+        let check = cat.breed_id
+        for (let i = 0; i < check.length; i++) { %>
+            <%for(let j = 0; j < breeds.length; j++) {
+                if(check == breeds[j].breed_id) {
+                    BreedName = breeds[j].breedName
+                    
+                }
+            }%>
+        <% } %>
+
+        <label for="breedName">Cat Name:</label>
+        <input type="text"id="breedName"name="breedName"value="<%= BreedName %>"required readonly/>
 
       <label for="age">Age:</label>
       <input type="text"id="age"name="age" value="<%= cat.age %>" required readonly/>

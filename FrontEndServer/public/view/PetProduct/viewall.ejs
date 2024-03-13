@@ -133,11 +133,10 @@ nav {
   </head>
   <body>
     <nav>
-      <a href="/main/">Product</a>
       <a class="active" href="/cats">CatAll</a>
-      <a href="/orders/">Order</a>
       <a href="/customers/">Customer</a>
       <a href="/Petcustomers/">OrderPet</a>
+      <a href="/breeds/">Breed</a>
     </nav>
     <div class="background">
       <div class="shape"></div>
@@ -149,9 +148,6 @@ nav {
         <th>Number ID</th>
         <th>Name</th>
         <th>Breed</th>
-        <th>Age</th>
-        <th>Color</th>
-        <th>Price</th>
         <th>Availability</th>
         <th>Action</th>
       </tr>
@@ -159,10 +155,17 @@ nav {
       <tr>
         <td><%= cats[i].cat_id %></td>
         <td><%= cats[i].name %></td>
-        <td><%= cats[i].breed %></td>
-        <td><%= cats[i].age %></td>
-        <td><%= cats[i].color %></td>
-        <td><%= cats[i].price %></td>
+
+        <%
+          let nameBreed
+          for(var j = 0; j < breeds.length; j++) {
+            if(cats[i].breed_id == breeds[j].breed_id) {
+              nameBreed = breeds[j].breedName
+            }
+          }
+        %>
+
+        <td><%= nameBreed %></td>
         <td><%= cats[i].availability %></td>
         <td>
           <a href="/cat/view/<%= cats[i].cat_id %>">Preview</a>

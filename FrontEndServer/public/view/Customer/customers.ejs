@@ -129,11 +129,10 @@
 
   <body>
     <nav>
-        <a href="/main/">Product</a>
         <a class="active" href="/cats">CatAll</a>
-        <a href="/orders/">Order</a>
         <a href="/customers/">Customer</a>
         <a href="/Petcustomers/">OrderPet</a>
+        <a href="/breeds/">Breed</a>
       </nav>
       <div class="background">
         <div class="shape"></div>
@@ -144,9 +143,6 @@
       <tr>
         <th>Number Customer</th>
         <th>Username</th>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Email</th>
         <th>Phonenumber</th>
         <th>Action</th>
       </tr>
@@ -154,9 +150,6 @@
       <tr>
         <td><%= customers[i].customer_id %></td>
         <td><%= customers[i].username %></td>
-        <td><%= customers[i].firstName %></td>
-        <td><%= customers[i].lastName %></td>
-        <td><%= customers[i].email %></td>
         <td><%= customers[i].phoneNumber %></td>
         <td>
           <a href="/customer/<%= customers[i].customer_id %>">View</a>

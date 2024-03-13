@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order</title>
-    <link rel="stylesheet" href="/css/style.css"/> 
+    <title>Cat</title>
+    <link rel="stylesheet" href="/css/style.css"/>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
@@ -13,6 +13,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
       rel="stylesheet"
     />
+
     <style>
         p {
         font-family: "Poppins", sans-serif;
@@ -77,20 +78,20 @@
         text-decoration: underline;
       }
     </style>
+
 </head>
 <body>
-    <form action="/orders/<%= order.customer_id %>/edit" method="post">
-    <label for="customerid">Customer ID:</label>
-    <input type="text"id="customerid"name="customerid"value="<%= order.customer_id %>"required readonly/>
 
-    <label for="order">Order Date:</label>
-    <input type="text"id="order"name="order"value="<%= order.order_date %>"required readonly/>
+    <form action="/breeds/<%= breeds.breed_id %>/edit" method="post">
 
-    <label for="totalamount">Total Amount:</label>
-    <input type="text"id="totalamount" name="totalamount" value="<%= order.total_amount  %>" required readonly/>
-    <a href="/orders/update/<%= order.order_id %>">Edit</a>
-    <a href="/orders/delete/<%= order.order_id %>">Delete</a>
-    <a href="/orders/">Back to List</a>
+        <label for="breed_id">Breed ID:</label>
+        <input type="text" name="breed_id" id="breed_id" value="<%= breeds.breed_id %>" required readonly/>
+
+        <label for="breedName">Breed Name:</label>
+        <input type="text"id="breedName"name="breedName"value="<%= breeds.breedName %>"required readonly/>
+
+        <a href="/breeds/">Back to List</a>
     </form>
+
 </body>
 </html>

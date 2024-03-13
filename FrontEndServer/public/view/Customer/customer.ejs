@@ -92,10 +92,10 @@
         <input type="text"id="lastname"name="lastname"value="<%= customer.lastName %>"required readonly/>
 
         <label for="email">Email:</label>
-        <input type="email"id="email" name="email" value="<%= customer.email %>" required readonly/>
+        <input type="text"id="email" name="email" value="<%= customer.email %>" required readonly/>
 
         <label for="phonenumber">PhoneNumber:</label>
-        <input type="number"id="phonenumber" name="phonenumber" value="<%= customer.phoneNumber %>" required readonly/>
+        <input type="text"id="phonenumber" name="phonenumber" value="<%= customer.phoneNumber %>" required readonly/>
 
         <a href="/customers/update/<%= customer.customer_id %>">Edit</a>
         <a href="/customers/delete/<%= customer.customer_id %>">Delete</a>

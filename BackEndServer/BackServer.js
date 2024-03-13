@@ -24,7 +24,7 @@ const Cat = sequelize.define('cat', {
         type: Sequelize.STRING ,
         allowNull: false
     } ,
-    breed: {
+    breed_id: {
         type: Sequelize.STRING ,
         allowNull: false
     },
@@ -74,49 +74,26 @@ const Customers = sequelize.define('customer', {
     }
 });
 
-const order = sequelize.define('order', {
-    order_id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-    },
-    customer_id: {
-        type: Sequelize.INTEGER ,
-        allowNull: false
-    },
-    order_date: {
-        type: Sequelize.DATEONLY ,
-        allowNull: false
-    },
-    total_amount: {
-        type: Sequelize.INTEGER ,
-        allowNull: false
-    }
-});
+// const order = sequelize.define('order', {
+//     order_id: {
+//         type: Sequelize.INTEGER,
+//         autoIncrement: true,
+//         primaryKey: true
+//     },
+//     customer_id: {
+//         type: Sequelize.INTEGER ,
+//         allowNull: false
+//     },
+//     order_date: {
+//         type: Sequelize.DATEONLY ,
+//         allowNull: false
+//     },
+//     total_amount: {
+//         type: Sequelize.INTEGER ,
+//         allowNull: false
+//     }
+// });
 
-const OrderDetails = sequelize.define('orderDetails', {
-    detail_id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-    },
-    order_id: {
-        type: Sequelize.INTEGER ,
-        allowNull: false
-    },
-    cat_id: {
-        type: Sequelize.INTEGER ,
-        allowNull: false
-    },
-    quantity: {
-        type: Sequelize.INTEGER ,
-        allowNull: false
-    },
-    unitPrice: {
-        type: Sequelize.INTEGER ,
-        allowNull: false
-    }
-});
 const Petcustomer = sequelize.define('petcustomer', {
     petcustomer_id: {
         type: Sequelize.INTEGER,
@@ -128,6 +105,18 @@ const Petcustomer = sequelize.define('petcustomer', {
         allowNull: false
     },
     customer_id: {
+        type: Sequelize.STRING ,
+        allowNull: false
+    }
+});
+
+const Breed = sequelize.define('breed', {
+    breed_id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+    breedName: {
         type: Sequelize.STRING ,
         allowNull: false
     }
@@ -257,66 +246,66 @@ app.delete('/customers/:id' ,(req ,res) => {
     });
 });
 
-//Order Table
-app.get('/orders' ,(req ,res) => {
-    order.findAll().then(orders => {
-        res.json(orders);
-    }).catch(err => {
-        res.status(500).send(err);
-    });
-});
+// //Order Table
+// app.get('/orders' ,(req ,res) => {
+//     order.findAll().then(orders => {
+//         res.json(orders);
+//     }).catch(err => {
+//         res.status(500).send(err);
+//     });
+// });
 
-app.get('/orders/:id' ,(req,res) => {
-    order.findByPk(req.params.id).then(order => {
-        if(!order) {
-            res.status(404).send('Order not found');
-        }else {
-            res.json(order);
-        }
-    }).catch (err => {
-        res.status(500).send(err);
-    });
-});
+// app.get('/orders/:id' ,(req,res) => {
+//     order.findByPk(req.params.id).then(order => {
+//         if(!order) {
+//             res.status(404).send('Order not found');
+//         }else {
+//             res.json(order);
+//         }
+//     }).catch (err => {
+//         res.status(500).send(err);
+//     });
+// });
 
-app.post('/orders' ,(req ,res) => {
-    order.create(req.body).then(order => {
-        res.send(order);
-    }).catch(err => {
-        res.status(500).send(err);
-    });
-});
+// app.post('/orders' ,(req ,res) => {
+//     order.create(req.body).then(order => {
+//         res.send(order);
+//     }).catch(err => {
+//         res.status(500).send(err);
+//     });
+// });
 
-app.put('/orders/:id' , (req ,res) => {
-    order.findByPk(req.params.id).then(order => {
-        if(!order) {
-            res.status(404).send('Order not found');
-        }else {
-            order.update(req.body).then(() => {
-                res.send(order);
-            }).catch(err => {
-                res.status(500).send(err);
-            });
-        }
-    }).catch(err => {
-        res.status(500).send(err);
-    });
-});
+// app.put('/orders/:id' , (req ,res) => {
+//     order.findByPk(req.params.id).then(order => {
+//         if(!order) {
+//             res.status(404).send('Order not found');
+//         }else {
+//             order.update(req.body).then(() => {
+//                 res.send(order);
+//             }).catch(err => {
+//                 res.status(500).send(err);
+//             });
+//         }
+//     }).catch(err => {
+//         res.status(500).send(err);
+//     });
+// });
 
-app.delete('/orders/:id' ,(req ,res) => {
-    order.findByPk(req.params.id).then(order => {
-        if(!order) {
-            res.status(404).send('Order not found');
-        }else {
-            order.destroy().then(() => {
-                res.send({});
-            }).catch(err => {
-                res.status(500).send(err);
-            });
-        }
-    }).catch(err => {
-        res.status(500).send(err);
-    });
-});
+// app.delete('/orders/:id' ,(req ,res) => {
+//     order.findByPk(req.params.id).then(order => {
+//         if(!order) {
+//             res.status(404).send('Order not found');
+//         }else {
+//             order.destroy().then(() => {
+//                 res.send({});
+//             }).catch(err => {
+//                 res.status(500).send(err);
+//             });
+//         }
+//     }).catch(err => {
+//         res.status(500).send(err);
+//     });
+// });
 
 //Petcustomer Table
 app.get('/petcustomers' ,(req ,res) => {
@@ -371,6 +360,70 @@ app.delete('/petcustomers/:id' ,(req ,res) => {
             res.status(404).send('Petcustomer not found');
         }else {
             petcustomer.destroy().then(() => {
+                res.send({});
+            }).catch(err => {
+                res.status(500).send(err);
+            });
+        }
+    }).catch(err => {
+        res.status(500).send(err);
+    });
+});
+
+
+//Breed Table
+app.get('/breeds' ,(req ,res) => {
+    Breed.findAll().then(breed => {
+        res.json(breed);
+    }).catch(err => {
+        res.status(500).send(err);
+    });
+});
+
+app.get('/breeds/:id' ,(req,res) => {
+    Breed.findByPk(req.params.id).then(breed => {
+        if(!breed) {
+            res.status(404).send('breeds not found');
+        }else {
+            res.json(breed);
+        }
+    }).catch (err => {
+        res.status(500).send(err);
+    });
+});
+
+app.post('/breeds' ,(req ,res) => {
+    Breed.create(req.body).then(breed => {
+        res.send(breed);
+    }).catch(err => {
+        res.status(500).send(err);
+        
+    });
+});
+
+app.put('/breeds/:id' , (req ,res) => {
+    Breed.findByPk(req.params.id).then(breed => {
+        if(!breed) {
+            res.status(404).send('breeds not found');
+        }else {
+            breed.update(req.body).then(() => {
+                res.send(breed);
+            }).catch(err => {
+                res.status(500).send(err);
+            });
+        }
+    }).catch(err => {
+        res.status(500).send(err);
+    });
+});
+
+
+app.delete('/breeds/:id' ,(req ,res) => {
+    Breed.findByPk(req.params.id).then(breed => {
+        if(!breed) {
+            res.status(404).send('breed not found');
+        }else {
+            breed.destroy().then(() => {
                 res.send({});
             }).catch(err => {
                 res.status(500).send(err);

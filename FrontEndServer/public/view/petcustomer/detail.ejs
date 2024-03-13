@@ -84,21 +84,41 @@
 
     <form action="/petcustomers/<%= petcustomers.petcustomer_id %>/edit" method="post">
 
-        <label for="catname">Cat Name</label>
-        <input type="text" name="catname" id="catname" value="<petcustomer.cat_id %>" required readonly/>
+        <h1>Detail Order</h1>
 
-        <label for="firstname">Firstname:</label>
-        <input type="text"id="firstname"name="firstname"value="<%= petcustomers.firstName %>"required readonly/>
+        <label for="cat_id">Cat ID</label>
+        <input type="text" name="cat_id" id="cat_id" value="<%= petcustomers.cat_id %>" required readonly/>
 
-        <label for="lastname">Lastname:</label>
-        <input type="text"id="lastname"name="lastname"value="<%= petcustomers.lastName %>"required readonly/>
+        <label for="customer_id">Customer ID:</label>
+        <input type="text"id="customer_id"name="customer_id"value="<%= petcustomers.customer_id %>"required readonly/>
+        
+        <% 
+        let CatName
+        let price
+        let color
+        let check = petcustomers.cat_id
+        for (let i = 0; i < check.length; i++) { %>
+            <%for(let j = 0; j < cats.length; j++) {
+                if(check == cats[j].cat_id) {
+                    CatName = cats[j].name
+                    price = cats[j].price
+                    color = cats[j].color
+                    
+                }
+            }%>
+        <% } %>
 
-        <label for="email">Email:</label>
-        <input type="email"id="email" name="email" value="<%= petcustomers.Email %>" required readonly/>
+        <label for="name">Cat Name:</label>
+        <input type="text"id="name"name="name"value="<%= CatName %>"required readonly/>
 
-        <a href="/customers/update/<%= customer.customer_id %>">Edit</a>
-        <a href="/customers/delete/<%= customer.customer_id %>">Delete</a>
-        <a href="/customers/">Back to List</a>
+        <label for="color">Color Cat:</label>
+        <input type="text"id="color"name="color"value="<%= color %>"required readonly/>
+
+        <label for="price">Price:</label>
+        <input type="text"id="price"name="price"value="<%= price %>"required readonly/>
+        
+
+        <a href="/petcustomers/">Back to List</a>
     </form>
 
 </body>
