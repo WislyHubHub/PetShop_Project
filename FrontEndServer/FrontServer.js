@@ -265,8 +265,10 @@ app.get("/detail/:id", async (req, res) => {
     }
 });
 
-app.get("/petcustomers/create", (req, res) => {
-    res.render("petcustomer/create");
+app.get("/petcustomers/create", async (req, res) => {
+    const response = await axios.get(base_url + '/cats')
+    const response1 = await axios.get(base_url + '/customers')
+    res.render("petcustomer/create" , {cats: response.data , customers: response1.data});
 });
 
 app.post("/petcustomers/create", async (req, res) => {
