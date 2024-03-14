@@ -5,7 +5,7 @@ const path = require("path");
 var bodyParser = require('body-parser');
 const { default: axios } = require('axios');
 
-const base_url = "http://10.104.17.201:3000";
+const base_url = "http://10.104.18.178:3000";
 
 app.set("views" ,path.join(__dirname, "/public/view"));
 app.set('view engine', 'ejs');
